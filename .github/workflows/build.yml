@@ -61,6 +61,7 @@ jobs:
 
     - name: Build MSI installer
       run: |
+        echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
         candle win64_installer.wxs -dVERSION=${{ steps.version.outputs.version }}
         light win64_installer.wixobj -ext WixUIExtension -out beatsaber-backend-${{ steps.version.outputs.version }}.msi
 
