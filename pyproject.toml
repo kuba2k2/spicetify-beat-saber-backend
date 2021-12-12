@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "spicetify-beat-saber-backend"
+version = "1.0.0"
+description = ""
+authors = ["Kuba Szczodrzyński <kuba@szczodrzynski.pl>"]
+
+[tool.poetry.dependencies]
+python = "^3.8,<3.11"
+fastapi = "^0.70.0"
+pydantic = {extras = ["dotenv"], version = "^1.8.2"}
+httpx = "^0.21.1"
+uvicorn = "^0.15.0"
+
+[tool.poetry.dev-dependencies]
+black = "^21.11b1"
+isort = "^5.10.1"
+pyinstaller = "^4.7"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
