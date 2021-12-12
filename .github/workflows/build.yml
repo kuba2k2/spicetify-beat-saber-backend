@@ -59,9 +59,13 @@ jobs:
       run: |
         poetry run pyinstaller -D -w -i win64_logo.ico -n spicetify-beat-saber-backend --version-file win64_version_info.txt start.py
 
+    - name: Add WiX Toolset to PATH
+      shell: bash
+      run: echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
+
     - name: Build MSI installer
+      shell: cmd
       run: |
-        echo "C:\Program Files (x86)\WiX Toolset v3.11\bin" >> $GITHUB_PATH
         candle win64_installer.wxs -dVERSION=${{ steps.version.outputs.version }}
         light win64_installer.wixobj -ext WixUIExtension -out beatsaber-backend-${{ steps.version.outputs.version }}.msi
 
