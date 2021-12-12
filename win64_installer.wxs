@@ -7,22 +7,48 @@
       <Directory Id="ProgramFiles64Folder">
         <Directory Id="ManufacturerFolder" Name="kubasz">
           <Directory Name="spicetify-beat-saber-backend" Id="APPLICATIONFOLDER">
-            <Directory Name="certifi" Id="AppCertifi" />
+            <Directory Name="certifi" Id="APPLICATIONFOLDER.Certifi" />
+            <Directory Name="pydantic" Id="APPLICATIONFOLDER.Pydantic" />
           </Directory>
         </Directory>
       </Directory>
     </Directory>
     <ComponentGroup Id="ProductComponents">
-      <Component Id="RegistryItems" Guid="CFF7CBB3-1FA4-4949-A840-53760ACA7F7F" Win64="yes" Directory="APPLICATIONFOLDER">
+      <Component Id="RegistryItems" Guid="D11BA2F9-ADE2-41AA-9010-9185DBAD07CA" Win64="yes" Directory="APPLICATIONFOLDER">
         <RegistryKey Root="HKLM" Key="SOFTWARE\Microsoft\Windows\CurrentVersion\Run">
           <RegistryValue Type="string" Name="spicetify-beat-saber-backend" Value="[APPLICATIONFOLDER]spicetify-beat-saber-backend.exe" KeyPath="yes" />
         </RegistryKey>
       </Component>
-      <Component Id="AppFiles.Certifi" Win64="yes" Directory="AppCertifi">
+      <Component Id="AppFiles.Certifi" Guid="7BACC803-0AB2-46F8-BCE3-D5C1C35CB88B" Win64="yes" Directory="APPLICATIONFOLDER.Certifi">
         <File Source="Dist\spicetify-beat-saber-backend\certifi\cacert.pem" />
       </Component>
-      <Component Id="AppFiles" Guid="718B0274-6B23-4E68-B53E-3B634D61FF87" Win64="yes" Directory="APPLICATIONFOLDER">
-        <File Source="Dist\spicetify-beat-saber-backend\spicetify-beat-saber-backend.exe" />
+      <Component Id="AppFiles.Pydantic" Guid="D170C1D8-0277-4587-9A08-E22387824F41" Win64="yes" Directory="APPLICATIONFOLDER.Pydantic">
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\__init__.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\_hypothesis_plugin.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\annotated_types.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\class_validators.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\color.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\dataclasses.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\datetime_parse.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\decorator.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\env_settings.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\error_wrappers.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\errors.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\fields.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\json.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\main.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\mypy.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\networks.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\parse.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\schema.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\tools.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\types.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\typing.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\utils.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\validators.cp38-win_amd64.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pydantic\version.cp38-win_amd64.pyd" />
+      </Component>
+      <Component Id="AppFiles" Guid="0C8978D2-3674-4D89-8A77-912E433DFA80" Win64="yes" Directory="APPLICATIONFOLDER">
         <File Source="Dist\spicetify-beat-saber-backend\_asyncio.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\_bz2.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\_ctypes.pyd" />
@@ -34,7 +60,6 @@
         <File Source="Dist\spicetify-beat-saber-backend\_queue.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\_socket.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\_ssl.pyd" />
-        <File Source="Dist\spicetify-beat-saber-backend\_uuid.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\api-ms-win-core-console-l1-1-0.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\api-ms-win-core-datetime-l1-1-0.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\api-ms-win-core-debug-l1-1-0.dll" />
@@ -78,8 +103,9 @@
         <File Source="Dist\spicetify-beat-saber-backend\libffi-7.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\libssl-1_1.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\pyexpat.pyd" />
-        <File Source="Dist\spicetify-beat-saber-backend\python310.dll" />
+        <File Source="Dist\spicetify-beat-saber-backend\python38.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\select.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\spicetify-beat-saber-backend.exe" />
         <File Source="Dist\spicetify-beat-saber-backend\ucrtbase.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\unicodedata.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\VCRUNTIME140.dll" />
