@@ -6,6 +6,7 @@ import files
 import levels
 import proxy
 from dependencies import authenticate
+from settings import Settings
 
 app = FastAPI(dependencies=[Depends(authenticate)])
 app.include_router(files.router)
@@ -20,5 +21,6 @@ app.add_middleware(
 )
 
 if __name__ == "__main__":
-    uvicorn.run(app, host="127.0.0.1", port=23287)
+    settings = Settings()
+    uvicorn.run(app, host=settings.app_host, port=settings.app_port)
     exit()
