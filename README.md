@@ -7,8 +7,10 @@ This is a background service to enable [spicetify-beat-saber](https://github.com
 ## Installation
 Run the .msi file downloadable on the Releases page. The app is added to autorun automatically.
 
+Don't run the app before following `Configuration` steps below, otherwise it will not work.
+
 ## Configuration
-Create a `.beatsaber.env` file in your `.spicetify` directory (which is in your home dir/user profile).
+1. Create a `.beatsaber.env` file in your `.spicetify` directory (which is in your home dir/user profile).
 
 ```properties
 AUTH_USERNAME=admin
@@ -18,9 +20,11 @@ APP_HOST=127.0.0.1
 APP_PORT=23287
 ```
 
-Change `AUTH_USERNAME` and `AUTH_PASSWORD` to suit your needs.
+2. Change `AUTH_USERNAME` and `AUTH_PASSWORD` to suit your needs.
 
-Set `BEATSABER_DIR` to the full path of your game directory.
+3. Set `BEATSABER_DIR` to the full path of your game directory.
+
+4. Either run the app directly (`c:\Program Files\kubasz\spicetify-beat-saber-backend\spicetify-beat-saber-backend.exe`) or reboot your PC, which should start it too.
 
 Then, configure the settings in the beat-saber custom app in Spotify:
 - BeastSaber login data - required to use the bookmarking feature
