@@ -103,6 +103,7 @@
         <File Source="Dist\spicetify-beat-saber-backend\libffi-7.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\libssl-1_1.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\pyexpat.pyd" />
+        <File Source="Dist\spicetify-beat-saber-backend\pyproject.toml" />
         <File Source="Dist\spicetify-beat-saber-backend\python38.dll" />
         <File Source="Dist\spicetify-beat-saber-backend\select.pyd" />
         <File Source="Dist\spicetify-beat-saber-backend\spicetify-beat-saber-backend.exe" />
