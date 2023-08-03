@@ -66,8 +66,8 @@ jobs:
     - name: Build MSI installer
       shell: cmd
       run: |
-        candle win64_installer.wxs -dVERSION=${{ steps.version.outputs.version }}
-        light win64_installer.wixobj -ext WixUIExtension -out beatsaber-backend-${{ steps.version.outputs.version }}.msi
+        candle win64.wxs -dVERSION=${{ steps.version.outputs.version }}
+        light win64.wixobj -ext WixUIExtension -out beatsaber-backend-${{ steps.version.outputs.version }}.msi
 
     - name: Upload workflow artifact
       uses: actions/upload-artifact@v2
