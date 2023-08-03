@@ -1,5 +1,5 @@
 import os
-from os.path import isdir, isfile, join
+from os.path import dirname, isdir, isfile
 
 from fastapi import APIRouter
 
@@ -8,8 +8,9 @@ from .files_response import FilesResponse
 router = APIRouter(prefix="/files", tags=["File management"])
 
 
-@router.post("/")
+@router.get("/")
 async def files_list(path: str):
+    path = path or "/"
     if path == "/" and os.name == "nt":
         import string
         from ctypes import windll
@@ -22,22 +23,25 @@ async def files_list(path: str):
             bitmask >>= 1
         return FilesResponse(
             path="",
+            parent="",
             dirs=drives,
             files=[],
-            pathsep=os.sep,
         )
 
+    path = path.strip("/\\")
     path = path.replace("/", os.sep).replace("\\", os.sep)
+    path += os.sep
+    parent = dirname(dirname(path))
 
     if isfile(path):
         raise ValueError("path is a file")
     if not isdir(path):
         raise ValueError("path does not exist")
 
-    (_, dirs, files) = next(os.walk(join(path, "")))
+    (_, dirs, files) = next(os.walk(path))
     return FilesResponse(
-        path=path.rstrip("/\\"),
-        dirs=sorted(dirs),
-        files=sorted(files),
-        pathsep=os.sep,
+        path=path,
+        parent=parent if path != parent else "",
+        dirs=sorted(dirs, key=lambda x: x.lower()),
+        files=sorted(files, key=lambda x: x.lower()),
     )

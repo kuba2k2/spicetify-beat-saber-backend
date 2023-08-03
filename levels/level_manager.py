@@ -1,12 +1,12 @@
 import json
 from hashlib import sha1
 from os import makedirs, walk
-from os.path import exists, isdir, isfile, join
+from os.path import exists, expandvars, isdir, isfile, join
 from shutil import rmtree
 from typing import IO, List
 from zipfile import ZipFile
 
-from settings import Settings
+from fastapi import HTTPException, status
 
 from .level import Level
 
@@ -16,12 +16,49 @@ class LevelManager:
     levels: List[Level] = []
 
     @staticmethod
+    def get_bs_dir() -> None:
+        cfg_dir = expandvars(join("%APPDATA%", "spicetify-beat-saber"))
+        bs_cfg = join(cfg_dir, "beatsaber.txt")
+        makedirs(cfg_dir, exist_ok=True)
+        if not isfile(bs_cfg):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Beat Saber directory not set",
+            )
+        with open(bs_cfg) as f:
+            bs_dir = f.read().strip()
+        if not isdir(bs_dir):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Beat Saber directory doesn't exist",
+            )
+        return bs_dir
+
+    @staticmethod
+    def set_bs_dir(bs_dir: str) -> None:
+        if not isdir(bs_dir):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Not a directory",
+            )
+        if not isdir(join(bs_dir, "Beat Saber_Data", "CustomLevels")):
+            raise HTTPException(
+                status_code=status.HTTP_400_BAD_REQUEST,
+                detail="Beat Saber directory doesn't exist",
+            )
+        cfg_dir = expandvars(join("%APPDATA%", "spicetify-beat-saber"))
+        bs_cfg = join(cfg_dir, "beatsaber.txt")
+        makedirs(cfg_dir, exist_ok=True)
+        with open(bs_cfg, "w") as f:
+            f.write(bs_dir)
+        LevelManager.INSTANCE = None
+
+    @staticmethod
     def get_instance() -> "LevelManager":
         if LevelManager.INSTANCE:
             return LevelManager.INSTANCE
-        settings = Settings()
         LevelManager.INSTANCE = LevelManager(
-            beatsaber_path=settings.beatsaber_dir,
+            beatsaber_path=LevelManager.get_bs_dir(),
         )
         return LevelManager.INSTANCE
 

@@ -1,4 +1,5 @@
 from io import BytesIO
+from os.path import isfile, join
 
 from fastapi import APIRouter, Depends
 from httpx import AsyncClient
@@ -37,3 +38,29 @@ async def levels_download(hash: str, lmgr: LevelManager = Depends(level_manager)
 async def levels_delete(level_dir: str, lmgr: LevelManager = Depends(level_manager)):
     lmgr.delete_level(level_dir)
     return ""
+
+
+def read_bs_version(path: str) -> str:
+    ver_file = join(LevelManager.get_bs_dir(), "BeatSaberVersion.txt")
+    if isfile(ver_file):
+        with open(ver_file) as f:
+            return f.read().strip()
+    return "Unknown Version"
+
+
+@router.get("/bsdir")
+async def bsdir() -> dict:
+    path = LevelManager.get_bs_dir()
+    return {
+        "path": path,
+        "version": read_bs_version(path),
+    }
+
+
+@router.post("/bsdir")
+async def bsdir(path: str) -> dict:
+    LevelManager.set_bs_dir(path)
+    return {
+        "path": path,
+        "version": read_bs_version(path),
+    }
