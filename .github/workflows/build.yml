@@ -57,7 +57,7 @@ jobs:
 
     - name: Build pyinstaller package
       run: |
-        poetry run pyinstaller -D -w -i win64_logo.ico -n spicetify-beat-saber-backend --version-file win64_version_info.txt start.py
+        poetry run python win64.py
 
     - name: Add WiX Toolset to PATH
       shell: bash

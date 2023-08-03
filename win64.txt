@@ -1,0 +1,28 @@
+# noinspection PyUnresolvedReferences
+VSVersionInfo(
+    ffi=FixedFileInfo(
+        filevers=(1, 1, 0, 0),
+        prodvers=(1, 1, 0, 0),
+        mask=0x3F,
+        flags=0x0,
+        OS=0x40004,
+        fileType=0x1,
+        subtype=0x0,
+        date=(0, 0),
+    ),
+    kids=[
+        # fmt: off
+        StringFileInfo([StringTable("040904B0", [
+            StringStruct("CompanyName", "kuba2k2"),
+            StringStruct("FileDescription", "Python backend for spicetify-beat-saber extension"),
+            StringStruct("FileVersion", "1.1.0"),
+            StringStruct("InternalName", "spicetify-beat-saber-backend"),
+            StringStruct("LegalCopyright", "© 2021 Kuba Szczodrzyński."),
+            StringStruct("OriginalFilename", "spicetify-beat-saber-backend.exe"),
+            StringStruct("ProductName", "spicetify-beat-saber-backend"),
+            StringStruct("ProductVersion", "1.1.0"),
+        ])]),
+        # fmt: on
+        VarFileInfo([VarStruct("Translation", [1033, 1200])]),
+    ],
+)
