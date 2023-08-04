@@ -27,8 +27,9 @@ app.add_middleware(
 @app.get("/")
 async def root():
     version = None
-    if isfile(join(dirname(__file__), "pyproject.toml")):
-        with open("pyproject.toml", "r", encoding="utf-8") as f:
+    pyproject = join(dirname(__file__), "pyproject.toml")
+    if isfile(pyproject):
+        with open(pyproject, "r", encoding="utf-8") as f:
             text = f.read()
             version = re.search(r"version\s?=\s?\"(.+?)\"", text).group(1)
     return {"version": version}
