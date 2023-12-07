@@ -28,7 +28,8 @@ async def levels_download(hash: str, lmgr: LevelManager = Depends(level_manager)
         response = await client.get(url)
         disposition = response.headers["content-disposition"]
         filename = disposition.partition("filename=")[2].strip('"')
-        level_dir = filename.rpartition(".zip")[0]
+        level_dir = filename.partition('"')[0]
+        level_dir = level_dir.rpartition(".zip")[0]
         if not level_dir:
             raise ValueError("Content disposition is invalid")
         return lmgr.save_level(level_dir, BytesIO(response.read()))

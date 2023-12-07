@@ -108,7 +108,7 @@ class LevelManager:
     def delete_level(self, level_dir: str) -> None:
         level_path = join(self.levels_path, level_dir)
         if not exists(level_path):
-            raise FileNotFoundError(f"Level {level_dir} does not exist")
+            return
         rmtree(level_path)
         self.parse_levels()
 
